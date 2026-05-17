@@ -44,8 +44,7 @@ The automated benchmarking framework tracked exact execution periods across vari
 5. **When is BFS preferred over DFS?** BFS is preferred when searching for the shortest path between two nodes in unweighted networks, or when the target element is expected to reside close to the source node.
 6. **What are the limitations of DFS?** DFS can get trapped in extremely deep or infinite paths if cycle protection is missing. Additionally, it does not guarantee finding the shortest path first and can incur risky `StackOverflowError` crashes if the recursion depth exceeds memory limits.
 
-## E. Screenshots
-Below are the visual validations of the program execution taken directly from my IDE console output:
+
 
 ## F. Reflection Section
 This assignment provided valuable practical insights into graph theory, moving from abstract theoretical paradigms into practical, structured Java code. Working through the implementation highlighted how minor architectural choices can significantly impact live terminal outputs. A key learning point was observing the performance gap between explicit heap allocation (BFS queues) and stack frame utilization (DFS recursion), which made abstract Big-O notation tangible and practical.
