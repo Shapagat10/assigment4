@@ -47,12 +47,6 @@ The automated benchmarking framework tracked exact execution periods across vari
 ## E. Screenshots
 Below are the visual validations of the program execution taken directly from my IDE console output:
 
-### 1. Graph Adjacency List Structure & Traversals (Part 1 & 2)
-![Graph Structure and Order](docs/screenshots/graph_structure.png)
-
-### 2. Traversals for Large Scale & Benchmark Tables (Part 3 & 4)
-![Performance Summary Table](docs/screenshots/performance_results.png)
-
 ## F. Reflection Section
 This assignment provided valuable practical insights into graph theory, moving from abstract theoretical paradigms into practical, structured Java code. Working through the implementation highlighted how minor architectural choices can significantly impact live terminal outputs. A key learning point was observing the performance gap between explicit heap allocation (BFS queues) and stack frame utilization (DFS recursion), which made abstract Big-O notation tangible and practical.
 
