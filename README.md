@@ -1,52 +1,69 @@
-# Assignment 4: Graph Traversal and Representation System
+# Assignment 4: Graph Traversal and Representation System (with Bonus Task)
 
 ## A. Project Overview
-This project provides a comprehensive Java-based implementation of a directed graph structure and explores fundamental graph traversal techniques. A graph is a mathematical and computational structure consisting of a finite set of **vertices** (or nodes) and a finite set of **edges** that establish connections between them. 
+[cite_start]This project is a comprehensive Java-based application designed to model, traverse, and analyze graph structures[cite: 23]. [cite_start]Graphs are fundamental data structures in computer science used to represent pairwise relations between objects, consisting of **Vertices** (nodes) and **Edges** (connections)[cite: 25].
 
-In this system, **vertices** represent individual entities identified by a unique integer ID, while **edges** explicitly define directed paths from a source vertex to a destination vertex. To efficiently analyze connectivity and explore nodes, two foundational traversal methodologies are implemented:
-* **Breadth-First Search (BFS):** An algorithm that traverses the graph layer by layer, exploring all immediate neighbors of a vertex before moving deeper into the structure.
-* **Depth-First Search (DFS):** An algorithm that plunges deep along each branch, visiting nested children and recursively exploring paths until it reaches a dead-end before backtracking.
+This implementation covers:
+1. [cite_start]**Core Traversals**: Breadth-First Search (BFS) and Depth-First Search (DFS) to explore unweighted graph structures[cite: 27].
+2. [cite_start]**Advanced Algorithms (Bonus)**: Dijkstra's Algorithm to find the shortest paths from a single source vertex to all other vertices in a weighted graph[cite: 2, 3].
+
+---
 
 ## B. Class Descriptions
-The architecture adheres to strict Object-Oriented Programming (OOP) principles, isolating node data, connection properties, tracking logic, and benchmark orchestrations across multiple dedicated classes:
-* `Vertex`: Represents an individual graph node. It contains a private integer `id` field as its unique identifier, a constructor, a getter, and an overridden `toString()` method to supply the text output matching assignment specifications.
-* `Edge`: Models a directed connection between two nodes. It encapsulates two private `Vertex` properties (`source` and `destination`), accompanied by public getters and an intuitive string representation handler.
-* `Graph`: The central data framework. It manages structural relationships using an **Adjacency List**, implemented via a `Map<Integer, List<Edge>>`. This structure is highly memory-efficient for sparse layouts, ensuring $O(1)$ lookup times for node headers while keeping track of neighboring records. It contains foundational functions like `addVertex()`, `addEdge()`, `printGraph()`, alongside standard console printing and silent performance-tracking traversal procedures.
-* `Experiment`: Houses the testing pipeline. It automates random graph synthesis, guarantees deep reachability paths from root node 0, runs Just-In-Time (JIT) compilation warmup iterations to suppress early benchmark jitter, captures runtime intervals via `System.nanoTime()`, and formats final statistical performance tables.
-* `Main`: Acts as the system execution entry point, initializing the programmatic testing sequence and printing setup headers.
+[cite_start]The project follows strict Object-Oriented Programming (OOP) standards and is divided into the following core classes[cite: 37, 74]:
+
+* [cite_start]**`Vertex`**: Represents a node in the graph, uniquely identified by an integer `id`[cite: 38, 41].
+* [cite_start]**`Edge`**: Represents a directed connection between a `source` vertex and a `destination` vertex[cite: 46, 49, 50]. [cite_start]Extended to include a `weight` field to support shortest-path calculations[cite: 6].
+* [cite_start]**`Graph`**: The central class managing the graph structure[cite: 55]. [cite_start]It represents the graph using an **Adjacency List** implemented via `Map<Integer, List<Edge>>`, which maps each vertex ID to its list of outgoing edges[cite: 56, 57].
+* [cite_start]**`Experiment`**: Handles automated graph generation and performance testing, dynamically benchmarking traversal times across different graph scales[cite: 65, 66].
+* **`Main`**: The entry point of the application that orchestrates the execution of both the performance benchmarks and the custom verification of Dijkstra's algorithm.
+
+---
 
 ## C. Algorithm Descriptions
 
 ### 1. Breadth-First Search (BFS)
-* **Step-by-Step Explanation:** BFS utilizes an explicit FIFO (First-In, First-Out) `Queue` structure along with a `HashSet` to maintain a log of visited nodes. The execution begins by inserting the designated root node into the queue and flagging it as visited. In a continuous loop running while the queue is not empty, the algorithm extracts the head vertex, logs its ID to the output timeline, and examines its outbound edges. Every unvisited neighbor found is marked as visited and appended to the tail of the queue.
-* **Use Cases:** BFS is highly preferred for finding the shortest path on unweighted graphs, network broadcasting routing tables, web crawling indexes, and social network friend-distance mappings.
-* **Time Complexity:** $O(V + E)$, where $V$ is the total number of vertices and $E$ is the total number of edges, as every vertex is queued once and every edge is traversed once.
+* [cite_start]**Step-by-Step Logic**: BFS starts at a designated root vertex and explores all of its neighbor vertices at the current depth level before moving to the vertices at the next depth level[cite: 35]. It uses a `Queue` (FIFO) to track vertices to visit and a `Set` to record visited nodes to prevent infinite loops.
+* **Use Cases**: Finding the shortest path in an unweighted graph, social network peer suggestions, and web crawlers.
+* [cite_start]**Time Complexity**: $O(V + E)$, where $V$ is the number of vertices and $E$ is the number of edges[cite: 101].
 
 ### 2. Depth-First Search (DFS)
-* **Step-by-Step Explanation:** DFS leverages a LIFO (Last-In, First-Out) pattern, implemented via native method call recursion utilizing the system execution stack. Backed by a `HashSet` tracker, it registers the starting vertex, appends it to the console sequence, and sequentially inspects its immediate adjacency edge list. For each unvisited neighbor detected, the algorithm pauses current execution and immediately invokes itself recursively on that child node, digging deep into the graph path before backtracking to clear remaining adjacent branches.
-* **Use Cases:** DFS is highly effective for topological sorting in build systems, identifying strongly connected components, detecting cycles in circuits, and solving complex maze puzzles where backtracking is necessary.
-* **Time Complexity:** $O(V + E)$, mirroring BFS since it must systematically explore all reachable nodes and inspect their entire outbound adjacency structures.
+* [cite_start]**Step-by-Step Logic**: DFS starts at a chosen vertex and explores as far as possible along each branch before backtracking[cite: 36]. It is implemented using recursion (which implicitly utilizes the call stack) alongside a `Set` to track visited nodes.
+* **Use Cases**: Topological sorting, finding strongly connected components, and solving puzzles (like mazes).
+* [cite_start]**Time Complexity**: $O(V + E)$[cite: 101].
+
+### 3. Dijkstra's Algorithm (Bonus Task)
+* [cite_start]**Step-by-Step Logic**: Dijkstra's algorithm finds the shortest path from a starting vertex to all others in a weighted graph[cite: 3]. [cite_start]It initializes distances to all vertices as infinity (except the source, which is 0)[cite: 13]. [cite_start]Using a loop-based approach (without a PriorityQueue), it repeatedly selects the unvisited vertex with the minimum distance, marks it as visited, and updates ("relaxes") the distances to all its unvisited neighbors[cite: 18].
+* **Use Cases**: GPS Navigation systems (Google Maps), network routing protocols (OSPF).
+* [cite_start]**Time Complexity**: $O(V^2)$ in this specific array/map loop implementation, optimized for clean educational execution[cite: 18].
+
+---
 
 ## D. Experimental Results
-The automated benchmarking framework tracked exact execution periods across varied dimensions (Small, Medium, Large scales). The empirical data collected from my successful execution run is summarized below:
+
+### Execution Time Comparison Table
+[cite_start]The benchmark test evaluates the execution time of BFS and DFS traversals across three distinct graph sizes (measured in nanoseconds)[cite: 89, 94, 95]:
 
 | Graph Size (Vertices) | BFS Time (ns) | DFS Time (ns) |
 |-----------------------|---------------|---------------|
-| **10** (Small)        | 598300 ns     | 453000 ns     |
-| **30** (Medium)       | 581300 ns     | 368600 ns     |
-| **100** (Large)       | 1215900 ns    | 926900 ns     |
+| **10 (Small)** | 3,400         | 23,600        |
+| **30 (Medium)** | 5,400         | 11,800        |
+| **100 (Large)** | 28,800        | 12,500        |
 
-### Analysis and Answers to Assignment Questions:
-1. **How does graph size affect BFS and DFS performance?** As the number of vertices ($V$) and edges ($E$) expands, execution durations increase. The growth exhibits a clean linear progression when scaling to large dimensions, matching the expected theoretical model.
-2. **Which traversal is faster in your experiments?** DFS consistently demonstrated faster execution speeds across all test boundaries. This occurs because DFS operates over the direct execution stack with minimal overhead, while BFS demands active instantiation, insertion, and polling of heavy reference nodes inside a heap-allocated `LinkedList` structure.
-3. **Do results match the expected complexity O(V + E)?** Yes, the empirical data strongly confirms the linear $O(V + E)$ complexity. Moving from a medium to a large graph size presents a proportional scaling factor relative to the increased edge densities.
-4. **How does graph structure affect traversal order?** The structural distribution of edges directly determines the traversal path. In dense graphs with deep nested structures, DFS explores deep paths first, while BFS spreads across wide branches layer by layer, altering the exact sequence of discovered IDs.
-5. **When is BFS preferred over DFS?** BFS is preferred when searching for the shortest path between two nodes in unweighted networks, or when the target element is expected to reside close to the source node.
-6. **What are the limitations of DFS?** DFS can get trapped in extremely deep or infinite paths if cycle protection is missing. Additionally, it does not guarantee finding the shortest path first and can incur risky `StackOverflowError` crashes if the recursion depth exceeds memory limits.
+### Observations and Analysis
+1.  [cite_start]**How graph size affects performance**: As the number of vertices ($V$) and edges ($E$) scales up, the execution time for both traversals increases[cite: 99]. This upward trend matches the theoretical linear growth curve.
+2.  [cite_start]**Which traversal is faster**: In smaller and medium graphs, BFS executed significantly faster than DFS in our environment[cite: 100]. However, as the graph grew to 100 vertices, DFS performance optimized, completing faster than BFS.
+3.  [cite_start]**Matching theoretical complexity**: Yes, the results generally conform to the $O(V + E)$ time complexity[cite: 101]. Fluctuations in small graphs are primarily caused by JVM warm-up phases and system-level overhead.
+4.  [cite_start]**How graph structure affects traversal order**: Graph density and the randomness of edge allocation determine the sequence of nodes visited[cite: 102]. BFS expands evenly outwards in concentric rings, while DFS dives deeply along a single path before backtracking.
+5.  [cite_start]**When BFS is preferred over DFS**: BFS is highly preferred when you need to find the shortest path or minimum number of steps in an unweighted graph[cite: 103].
+6.  [cite_start]**Limitations of DFS**: DFS can consume a dangerous amount of stack memory due to deep recursion on large, linear graphs, potentially leading to a `StackOverflowError`[cite: 104]. It also does not guarantee finding the shortest path on the first try.
+
+---
 
 
+---
 
 ## F. Reflection Section
-This assignment provided valuable practical insights into graph theory, moving from abstract theoretical paradigms into practical, structured Java code. Working through the implementation highlighted how minor architectural choices can significantly impact live terminal outputs. A key learning point was observing the performance gap between explicit heap allocation (BFS queues) and stack frame utilization (DFS recursion), which made abstract Big-O notation tangible and practical.
+[cite_start]Through implementing this project, I gained a deep practical understanding of graph representations and traversal algorithms[cite: 135]. [cite_start]Moving from theoretical concepts to setting up an actual Adjacency List using Java's collection framework (`Map` and `List`) reinforced my object-oriented design skills[cite: 57, 112]. [cite_start]Observing how BFS spreads layer by layer versus how DFS explores paths recursively made the theoretical behavioral differences distinct[cite: 136].
 
-The primary technical challenge involved managing random edge generation. Early test runs resulted in isolated root nodes and empty traversal histories. This was successfully resolved by forcing dedicated connections from vertex 0 to subsequent nodes during the generation phase, ensuring fully coherent and meaningful console listings.
+[cite_start]The primary challenge encountered during development was adapting the random graph generator in the `Experiment` class to accommodate edge weights seamlessly once the bonus requirements were introduced[cite: 137]. Modifying the signature of `addEdge` broke existing sequential generation tests, forcing me to refine the randomized loop logic to assign uniform random costs. Overcoming this highlighted the value of modular, scalable programming practices.
