@@ -1,23 +1,20 @@
-
 public class Edge {
     private final Vertex source;
     private final Vertex destination;
+    private final int weight; // 1. Добавили поле веса
 
-    public Edge(Vertex source, Vertex destination) {
+    public Edge(Vertex source, Vertex destination, int weight) {
         this.source = source;
         this.destination = destination;
+        this.weight = weight;
     }
 
-    public Vertex getSource() {
-        return source;
-    }
+    public Vertex getSource() { return source; }
 
-    public Vertex getDestination() {
-        return destination;
-    }
-
+    public Vertex getDestination() { return destination; }
+    public int getWeight() { return weight; }
     @Override
     public String toString() {
-        return source + " -> " + destination;
+        return source + " -> " + destination + " (" + weight + ")";
     }
 }

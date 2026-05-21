@@ -107,7 +107,6 @@ public class Experiment {
         printResults("DFS", largeDfsTime);
         System.out.println();
 
-        // Prints final execution table matching image format exactly
         System.out.println("===");
         System.out.println("   EXECUTION TIME SUMMARY");
         System.out.println("===");
@@ -135,7 +134,8 @@ public class Experiment {
 
         while (edgesAdded < 3 && verticesCount > 3) {
             int to = random.nextInt(verticesCount - 1) + 1;
-            graph.addEdge(0, to);
+            int weight = random.nextInt(20) + 1; // Вес от 1 до 20
+            graph.addEdge(0, to, weight);
             edgesAdded++;
         }
 
@@ -143,7 +143,8 @@ public class Experiment {
             int from = random.nextInt(verticesCount);
             int to = random.nextInt(verticesCount);
             if (from != to) {
-                graph.addEdge(from, to);
+                int weight = random.nextInt(20) + 1; // Вес от 1 до 20
+                graph.addEdge(from, to, weight);
                 edgesAdded++;
             }
         }
